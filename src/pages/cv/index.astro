@@ -1,0 +1,14 @@
+---
+import EmptyState from "../../components/EmptyState.astro";
+import { pages } from "../../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={pages.cv.title} description={pages.cv.subtitle} noindex>
+  <section class="page-section" aria-labelledby="cv-title">
+    <p class="eyebrow">CV</p>
+    <h2 id="cv-title" class="page-title">{pages.cv.title}</h2>
+    <p class="page-subtitle">{pages.cv.subtitle}</p>
+    <EmptyState title={pages.cv.emptyTitle} message={pages.cv.emptyMessage} />
+  </section>
+</BaseLayout>

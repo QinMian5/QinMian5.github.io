@@ -1,0 +1,23 @@
+---
+import { socials } from "../config/site";
+import Icon from "./Icon.astro";
+
+const enabledSocials = socials.filter((social) => social.enabled);
+---
+
+<div class="social-links" aria-label="Profile links">
+  {
+    enabledSocials.map((social) => (
+      <a
+        class="social-link"
+        href={social.href}
+        aria-label={social.label}
+        title={social.label}
+        target={social.href.startsWith("http") ? "_blank" : undefined}
+        rel={social.href.startsWith("http") ? "noreferrer" : undefined}
+      >
+        <Icon name={social.icon} size={24} />
+      </a>
+    ))
+  }
+</div>

@@ -1,0 +1,54 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+
+const shareLinks = [
+  {
+    label: "Share on X",
+    icon: "Twitter",
+    href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+  },
+  {
+    label: "Share on Facebook",
+    icon: "Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+  },
+  {
+    label: "Share on LinkedIn",
+    icon: "LinkedIn",
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+  },
+  {
+    label: "Share by email",
+    icon: "Mail",
+    href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+  },
+];
+---
+
+<aside class="share-block" aria-label="Share this page">
+  <span class="share-label">Share:</span>
+  <div class="share-links">
+    {
+      shareLinks.map((link) => (
+        <a
+          class="icon-btn"
+          href={link.href}
+          aria-label={link.label}
+          target={link.href.startsWith("http") ? "_blank" : undefined}
+          rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+        >
+          <Icon name={link.icon} size={20} />
+        </a>
+      ))
+    }
+  </div>
+</aside>

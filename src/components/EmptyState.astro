@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  message: string;
+}
+
+const { title, message } = Astro.props;
+---
+
+<section class="empty-state" aria-label={title}>
+  <h2>{title}</h2>
+  <p>{message}</p>
+</section>

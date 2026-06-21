@@ -1,0 +1,22 @@
+---
+import BaseItemCard from "../../components/BaseItemCard.astro";
+import Tag from "../../components/Tag.astro";
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
+---
+
+<DevToolsLayout title="Theme Visualizer">
+  <div class="dev-preview-stack">
+    <BaseItemCard
+      title="Sample Content Card"
+      href="/dev-tools/theme-visualizer/"
+      description="A static preview of card, metadata, link, and tag styling."
+      date="June 2026"
+      extra="Preview"
+      tags={["astro", "theme"]}
+    />
+    <div class="tag-row">
+      <Tag name="portfolio" count={2} />
+      <Tag name="astro" count={1} size="lg" />
+    </div>
+  </div>
+</DevToolsLayout>

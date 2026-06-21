@@ -1,0 +1,79 @@
+---
+import Icon from "./Icon.astro";
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  href: string;
+  description?: string;
+  date?: string;
+  authors?: string;
+  extra?: string;
+  tags?: string[];
+  externalUrl?: string;
+}
+
+const {
+  title,
+  href,
+  description,
+  date,
+  authors,
+  extra,
+  tags = [],
+  externalUrl,
+} = Astro.props;
+---
+
+<article class="card">
+  <div class="card-content">
+    <a href={href} class="card-title">{title}</a>
+    {
+      date || authors || extra ? (
+        <div class="card-meta">
+          {date ? (
+            <span class="meta-item">
+              <Icon name="Calendar" size={16} />
+              <span>{date}</span>
+            </span>
+          ) : null}
+          {authors ? (
+            <span class="meta-item">
+              <Icon name="User" size={16} />
+              <span>{authors}</span>
+            </span>
+          ) : null}
+          {extra ? (
+            <span class="meta-item">
+              <Icon name="Institution" size={16} />
+              <span>{extra}</span>
+            </span>
+          ) : null}
+        </div>
+      ) : null
+    }
+    {
+      tags.length > 0 ? (
+        <div class="tag-row">
+          {tags.map((tag) => (
+            <Tag name={tag} size="sm" />
+          ))}
+        </div>
+      ) : null
+    }
+    {description ? <p class="card-desc">{description}</p> : null}
+  </div>
+  {
+    externalUrl ? (
+      <a
+        class="card-link"
+        href={externalUrl}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open external link for ${title}`}
+      >
+        <Icon name="ExternalLink" size={18} />
+      </a>
+    ) : null
+  }
+</article>

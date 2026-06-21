@@ -1,0 +1,37 @@
+---
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
+
+const tools = [
+  {
+    title: "Palette Visualizer",
+    href: "/dev-tools/palette-visualizer/",
+    description:
+      "Light and dark theme variables for the upstream-blue palette.",
+  },
+  {
+    title: "Screen Visualizer",
+    href: "/dev-tools/screen-visualizer/",
+    description: "Responsive layout checkpoints for portfolio shell widths.",
+  },
+  {
+    title: "Theme Visualizer",
+    href: "/dev-tools/theme-visualizer/",
+    description: "Sample UI elements rendered against both theme modes.",
+  },
+];
+---
+
+<DevToolsLayout title="Dev Tools">
+  <div class="item-list">
+    {
+      tools.map((tool) => (
+        <article class="card">
+          <a class="card-title" href={tool.href}>
+            {tool.title}
+          </a>
+          <p class="card-desc">{tool.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</DevToolsLayout>

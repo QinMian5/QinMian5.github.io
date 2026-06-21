@@ -5,7 +5,14 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/*.astro", "!dist", "!.astro", "!node_modules"]
+    "includes": [
+      "**",
+      "!**/*.astro",
+      "!dist",
+      "!.astro",
+      "!node_modules",
+      "!src/assets/icons/*.svg"
+    ]
   },
   "formatter": {
     "enabled": false

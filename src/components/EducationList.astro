@@ -1,0 +1,36 @@
+---
+import { education } from "../config/site";
+
+const entries = education.map((item) => ({
+  period: item.period,
+  institution: item.institution,
+  abbreviation: "abbreviation" in item ? item.abbreviation : undefined,
+  detail: "status" in item ? `${item.status}, ${item.field}` : item.degree,
+  group: item.group,
+}));
+---
+
+<ol class="timeline-list">
+  {
+    entries.map((item) => (
+      <li class="timeline-item">
+        <p class="timeline-period">{item.period}</p>
+        <div>
+          <h3 class="timeline-title">
+            {item.institution}
+            {item.abbreviation ? (
+              <span class="timeline-abbreviation"> ({item.abbreviation})</span>
+            ) : null}
+          </h3>
+          <p class="timeline-detail">{item.detail}</p>
+          <p class="timeline-detail">
+            Research group:{" "}
+            <a href={item.group.href} target="_blank" rel="noreferrer">
+              {item.group.name}
+            </a>
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ol>

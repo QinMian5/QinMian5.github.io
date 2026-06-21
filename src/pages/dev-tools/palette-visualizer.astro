@@ -1,0 +1,26 @@
+---
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
+
+const tokens = [
+  "--color-bg",
+  "--color-surface",
+  "--color-text",
+  "--color-muted",
+  "--color-border",
+  "--color-accent",
+  "--color-focus",
+];
+---
+
+<DevToolsLayout title="Palette Visualizer">
+  <div class="palette-grid">
+    {
+      tokens.map((token) => (
+        <div class="palette-swatch">
+          <span class="swatch-color" style={`background: var(${token})`} />
+          <code>{token}</code>
+        </div>
+      ))
+    }
+  </div>
+</DevToolsLayout>

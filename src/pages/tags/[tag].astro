@@ -1,0 +1,51 @@
+---
+import BaseItemCard from "../../components/BaseItemCard.astro";
+import {
+  getAllTags,
+  getContentByTag,
+  getEntryPath,
+  formatDate,
+  getEntryAuthors,
+  getEntryExtra,
+} from "../../lib/content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  return tags.map((tag) => ({
+    params: { tag: tag.name },
+    props: { tagName: tag.name },
+  }));
+}
+
+const { tagName } = Astro.props;
+const entries = await getContentByTag(tagName);
+---
+
+<BaseLayout
+  title={`#${tagName}`}
+  description={`Approved public content tagged ${tagName}.`}
+  noindex={true}
+>
+  <section class="page-section" aria-labelledby="tag-title">
+    <p class="eyebrow">Tag</p>
+    <h2 id="tag-title" class="page-title">#{tagName}</h2>
+    <p class="page-subtitle">Approved public content tagged with {tagName}.</p>
+    <div class="item-list">
+      {
+        entries.map((entry) => (
+          <BaseItemCard
+            title={entry.data.title}
+            href={getEntryPath(entry.collection, entry)}
+            description={entry.data.description}
+            date={formatDate(entry.data.date)}
+            authors={getEntryAuthors(entry)}
+            extra={getEntryExtra(entry)}
+            tags={entry.data.tags}
+            externalUrl={entry.data.externalUrl}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

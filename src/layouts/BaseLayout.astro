@@ -1,41 +1,133 @@
 ---
+import "katex/dist/katex.min.css";
 import "../styles/global.css";
+import ProfileSidebar from "../components/ProfileSidebar.astro";
+import SiteNavigation from "../components/SiteNavigation.astro";
+import { site } from "../config/site";
 
 interface Props {
   title?: string;
   description?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
 }
 
 const {
-  title = "Mian Qin",
-  description = "Researcher and developer working on molecular simulation, scientific computing, and agentic research infrastructure.",
+  title = site.title,
+  description = site.description,
+  ogType = "website",
+  noindex = false,
 } = Astro.props;
 
-const canonicalUrl = new URL(
-  Astro.url.pathname,
-  "https://qinmian5.github.io",
-).toString();
+const pageTitle =
+  title === site.title ? site.title : `${title} | ${site.title}`;
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={site.lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const storageKey = "mian-qin-theme";
+        const root = document.documentElement;
+        const storedTheme = localStorage.getItem(storageKey);
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        const theme =
+          storedTheme === "light" || storedTheme === "dark"
+            ? storedTheme
+            : systemTheme;
+
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+      })();
+    </script>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={site.author} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Mian Qin" />
-    <meta property="og:title" content={title} />
+    <link rel="icon" type="image/svg+xml" href={site.favicon} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <main id="main-content">
-      <slot />
-    </main>
+    <div class="site-shell">
+      <ProfileSidebar />
+      <div class="content-shell">
+        <SiteNavigation />
+        <main id="main-content" class="main-content">
+          <slot />
+        </main>
+        <footer class="site-footer">
+          <p>© {new Date().getFullYear()} {site.author}</p>
+        </footer>
+      </div>
+    </div>
+    <script is:inline>
+      (() => {
+        const storageKey = "mian-qin-theme";
+        const root = document.documentElement;
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const getStoredTheme = () => {
+          const value = localStorage.getItem(storageKey);
+          return value === "light" || value === "dark" ? value : null;
+        };
+
+        const getSystemTheme = () => (media.matches ? "dark" : "light");
+
+        const applyTheme = (theme, persist) => {
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+
+          if (persist) {
+            localStorage.setItem(storageKey, theme);
+          }
+
+          document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+            const isDark = theme === "dark";
+            button.setAttribute("aria-pressed", String(isDark));
+
+            const label = button.querySelector("[data-theme-toggle-label]");
+            if (label) {
+              label.textContent = isDark ? "Dark" : "Light";
+            }
+
+            const icon = button.querySelector("[data-theme-icon]");
+            if (icon) {
+              icon.textContent = isDark ? "☾" : "☼";
+            }
+          });
+        };
+
+        applyTheme(getStoredTheme() ?? getSystemTheme(), false);
+
+        document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const current = root.dataset.theme === "dark" ? "dark" : "light";
+            applyTheme(current === "dark" ? "light" : "dark", true);
+          });
+        });
+
+        media.addEventListener("change", () => {
+          if (!getStoredTheme()) {
+            applyTheme(getSystemTheme(), false);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

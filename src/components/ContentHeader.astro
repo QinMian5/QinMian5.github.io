@@ -1,0 +1,49 @@
+---
+import Icon from "./Icon.astro";
+import Tag from "./Tag.astro";
+
+interface MetaItem {
+  icon?: string;
+  value: string;
+  datetime?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  meta?: MetaItem[];
+  tags?: string[];
+}
+
+const { title, subtitle, meta = [], tags = [] } = Astro.props;
+---
+
+<header class="page-header">
+  <h2 class="page-title">{title}</h2>
+  {subtitle ? <p class="page-subtitle">{subtitle}</p> : null}
+  {
+    meta.length > 0 ? (
+      <div class="item-meta">
+        {meta.map((item) => (
+          <span class="meta-item">
+            {item.icon ? <Icon name={item.icon} size={16} /> : null}
+            {item.datetime ? (
+              <time datetime={item.datetime}>{item.value}</time>
+            ) : (
+              <span>{item.value}</span>
+            )}
+          </span>
+        ))}
+      </div>
+    ) : null
+  }
+  {
+    tags.length > 0 ? (
+      <div class="tag-row">
+        {tags.map((tag) => (
+          <Tag name={tag} size="sm" />
+        ))}
+      </div>
+    ) : null
+  }
+</header>

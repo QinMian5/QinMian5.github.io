@@ -1,0 +1,26 @@
+---
+import { profile } from "../config/site";
+import Icon from "./Icon.astro";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<aside class="profile-sidebar" aria-label="Profile">
+  <div class="profile-avatar" aria-hidden="true">
+    {
+      profile.avatar ? (
+        <img src={profile.avatar} alt="" width="160" height="160" />
+      ) : (
+        <span>{profile.initials}</span>
+      )
+    }
+  </div>
+  <div class="profile-copy">
+    <h1 class="profile-name">{profile.name}</h1>
+    <p class="profile-affiliation">
+      <Icon name="Institution" size={20} />
+      <span>{profile.affiliation}</span>
+    </p>
+    <p class="profile-headline">{profile.sidebarLine}</p>
+    <SocialLinks />
+  </div>
+</aside>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  count?: number;
+  size?: "sm" | "md" | "lg";
+}
+
+const { name, count, size = "md" } = Astro.props;
+const tagPath = `/tags/${encodeURIComponent(name.toLowerCase())}/`;
+---
+
+<a class:list={["tag", `tag-${size}`]} href={tagPath}>
+  #{name}
+  {count !== undefined ? <span class="tag-count">({count})</span> : null}
+</a>

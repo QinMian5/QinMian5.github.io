@@ -1,0 +1,25 @@
+---
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
+
+const screens = [
+  { label: "Mobile", width: "360px" },
+  { label: "Tablet", width: "768px" },
+  { label: "Desktop", width: "1180px" },
+];
+---
+
+<DevToolsLayout title="Screen Visualizer">
+  <div class="screen-grid">
+    {
+      screens.map((screen) => (
+        <section class="screen-frame" style={`max-width: ${screen.width}`}>
+          <p class="eyebrow">{screen.label}</p>
+          <div class="mini-layout">
+            <div />
+            <div />
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</DevToolsLayout>

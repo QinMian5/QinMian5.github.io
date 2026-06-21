@@ -1,0 +1,9 @@
+---
+import { pages } from "../../config/site";
+import { getSectionEntries } from "../../lib/content";
+import BaseListing from "../../layouts/BaseListing.astro";
+
+const entries = await getSectionEntries("teaching");
+---
+
+<BaseListing collection="teaching" entries={entries} {...pages.teaching} />

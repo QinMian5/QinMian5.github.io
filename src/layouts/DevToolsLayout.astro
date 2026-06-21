@@ -1,0 +1,28 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Development previews for the portfolio UI." } =
+  Astro.props;
+---
+
+<BaseLayout title={`${title} | Dev Tools`} description={description} noindex>
+  <section class="page-section dev-tools-page" aria-labelledby="dev-title">
+    <div class="dev-tools-header">
+      <div>
+        <p class="eyebrow">Dev tools</p>
+        <h2 id="dev-title" class="page-title">{title}</h2>
+        <p class="page-subtitle">{description}</p>
+      </div>
+      <div class="dev-tools-links">
+        <a class="text-link" href="/dev-tools/">Menu</a>
+        <a class="text-link" href="/">Live site</a>
+      </div>
+    </div>
+    <slot />
+  </section>
+</BaseLayout>

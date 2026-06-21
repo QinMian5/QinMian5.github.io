@@ -1,0 +1,51 @@
+---
+import BaseItemCard from "../components/BaseItemCard.astro";
+import ContentHeader from "../components/ContentHeader.astro";
+import EmptyState from "../components/EmptyState.astro";
+import {
+  formatDate,
+  getEntryAuthors,
+  getEntryExtra,
+  getEntryPath,
+  type PublicCollection,
+  type PublicEntry,
+} from "../lib/content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  collection: PublicCollection;
+  title: string;
+  subtitle?: string;
+  entries: PublicEntry[];
+  emptyTitle: string;
+  emptyMessage: string;
+}
+
+const { collection, title, subtitle, entries, emptyTitle, emptyMessage } =
+  Astro.props;
+const isEmpty = entries.length === 0;
+---
+
+<BaseLayout title={title} description={subtitle} noindex={isEmpty}>
+  <ContentHeader title={title} subtitle={subtitle} />
+  <section class="item-list" aria-label={title}>
+    {
+      isEmpty ? (
+        <EmptyState title={emptyTitle} message={emptyMessage} />
+      ) : (
+        entries.map((entry) => (
+          <BaseItemCard
+            title={entry.data.title}
+            href={getEntryPath(collection, entry)}
+            description={entry.data.description}
+            date={formatDate(entry.data.date)}
+            authors={getEntryAuthors(entry)}
+            extra={getEntryExtra(entry)}
+            tags={entry.data.tags}
+            externalUrl={entry.data.externalUrl}
+          />
+        ))
+      )
+    }
+  </section>
+</BaseLayout>
