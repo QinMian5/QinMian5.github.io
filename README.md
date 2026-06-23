@@ -21,7 +21,7 @@ The current public pages are:
 - Writing
 - Dev tools previews
 
-Portfolio section pages use the Academic Portfolio Astro structure. The primary navigation currently exposes About, Publications, Code, and Writing. Retained non-navigation pages such as the legacy About route, Talks, Teaching, Tags, and CV render neutral empty states or noindex pages where applicable, and are excluded from the generated sitemap until they contain approved content. Tags derive only from approved non-draft content entries.
+Portfolio section pages use the Academic Portfolio Astro structure. The primary navigation currently exposes About, Publications, Code, and Writing. Retained non-navigation pages such as the legacy About route, Talks, Teaching, Tags, and CV render without placeholder copy when they have no approved content, and are excluded from the generated sitemap until they contain approved content. Tags derive only from approved non-draft content entries.
 
 ## Confirmed Public Content
 

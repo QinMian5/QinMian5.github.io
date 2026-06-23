@@ -25,7 +25,7 @@ As a site owner, I want the website to publish as a static site so that it can b
 As a site owner, I want public content to be grounded in real information so that the site does not misrepresent my work.
 
 - The website SHALL contain only approved personal, academic, research, software, writing, talk, slide, and video information.
-- If content is not yet approved, the website SHALL omit that content from public navigation or use a neutral empty state.
+- If content is not yet approved, the website SHALL omit that content from public navigation or avoid rendering placeholder body copy.
 - The website SHALL avoid publishing fictional projects, research outcomes, talks, credentials, affiliations, papers, awards, or biographical details.
 - The website SHALL NOT add unapproved contact details, social profiles, additional personal photos, CV files, adviser names, thesis topics, or other accounts.
 
@@ -84,6 +84,6 @@ As a visitor, I want the current website to expose the academic portfolio struct
 - The website MAY retain static non-navigation pages for the legacy About route, Talks, Teaching, CV, Tags, and development previews.
 - The website SHALL show Mian Qin's confirmed identity, headline, short description, GitHub entry, Google Scholar entry, email entry, LinkedIn entry, education, and affiliations.
 - The website SHALL show education in reverse chronological order with clear Patel Group and Xu Group external links.
-- The website SHALL render a neutral empty state for public sections that do not yet have approved public content.
+- The website SHALL avoid placeholder body copy for public sections that do not yet have approved public content.
 - The website SHALL keep empty public section pages out of sitemap output until they contain approved public content.
 - The website SHALL keep Tags derived only from approved non-draft content.

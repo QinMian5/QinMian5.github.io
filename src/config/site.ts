@@ -95,55 +95,34 @@ export const enabledNavigation = navigation.filter((item) => item.enabled);
 export const pages = {
   about: {
     title: "About",
-    subtitle: "Confirmed public profile and education.",
+    subtitle: undefined,
   },
   projects: {
     title: "Code & Projects",
-    subtitle: "Confirmed public software and project entries.",
-    emptyTitle: "No public projects yet",
-    emptyMessage:
-      "Project entries will appear here after confirmed public content is approved.",
+    subtitle: undefined,
   },
   writing: {
     title: "Writing",
-    subtitle: "Confirmed public articles and notes.",
-    emptyTitle: "No public writing yet",
-    emptyMessage:
-      "Writing entries will appear here after confirmed public content is approved.",
+    subtitle: undefined,
   },
   publications: {
     title: "Publications",
-    subtitle: "Confirmed public publications.",
-    emptyTitle: "No public publications yet",
-    emptyMessage:
-      "Publication entries will appear here after confirmed public content is approved.",
+    subtitle: undefined,
   },
   talks: {
     title: "Talks & Presentations",
-    subtitle: "Confirmed public talks, slides, and presentations.",
-    emptyTitle: "No public talks yet",
-    emptyMessage:
-      "Talk entries will appear here after confirmed public content is approved.",
+    subtitle: undefined,
   },
   teaching: {
     title: "Teaching",
-    subtitle: "Confirmed public teaching material.",
-    emptyTitle: "No public teaching entries yet",
-    emptyMessage:
-      "Teaching entries will appear here after confirmed public content is approved.",
+    subtitle: undefined,
   },
   tags: {
     title: "Tags",
-    subtitle: "Topics from approved public content.",
-    emptyTitle: "No tags yet",
-    emptyMessage:
-      "Tags will appear here after approved public content includes topic metadata.",
+    subtitle: undefined,
   },
   cv: {
     title: "Curriculum Vitae",
-    subtitle: "Confirmed public CV content.",
-    emptyTitle: "No public CV yet",
-    emptyMessage:
-      "A CV page will appear here after an approved public CV is available.",
+    subtitle: undefined,
   },
 } as const;

@@ -1,5 +1,4 @@
 ---
-import EmptyState from "../../components/EmptyState.astro";
 import Tag from "../../components/Tag.astro";
 import { pages } from "../../config/site";
 import { getAllTags } from "../../lib/content";
@@ -31,9 +30,7 @@ function getTagSize(count: number): "sm" | "md" | "lg" {
   noindex={true}
 >
   <section class="page-section" aria-labelledby="tags-title">
-    <p class="eyebrow">Tags</p>
     <h2 id="tags-title" class="page-title">{pages.tags.title}</h2>
-    <p class="page-subtitle">{pages.tags.subtitle}</p>
     {
       tags.length > 0 ? (
         <div class="tag-cloud">
@@ -45,12 +42,7 @@ function getTagSize(count: number): "sm" | "md" | "lg" {
             />
           ))}
         </div>
-      ) : (
-        <EmptyState
-          title={pages.tags.emptyTitle}
-          message={pages.tags.emptyMessage}
-        />
-      )
+      ) : null
     }
   </section>
 </BaseLayout>

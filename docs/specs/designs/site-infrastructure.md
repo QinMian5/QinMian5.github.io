@@ -35,21 +35,21 @@ The integration preserves layout, section structure, avatar/social/icon conventi
 - `src/content.config.ts` defines Astro content collections for `pages`, `projects`, `writing`, `publications`, `talks`, `teaching`, and `cv`.
 - `src/content/pages/about.mdx` stores the confirmed About page prose.
 - `src/content/writing/math-capability.mdx` is a draft-only MDX entry used to verify math support without publishing a Writing section.
-- `src/components/` holds Astro-first presentational components for profile/sidebar, navigation, theme toggle, education, empty states, icons, social links, tags, item cards, content headers, share buttons, and back links.
+- `src/components/` holds Astro-first presentational components for profile/sidebar, navigation, theme toggle, education, icons, social links, tags, item cards, content headers, share buttons, and back links.
 - `src/layouts/BaseLayout.astro` owns document metadata, global stylesheet import, KaTeX stylesheet import, anti-flash theme initialization, skip link, profile/sidebar, navigation, main landmark, footer, and theme toggle behavior.
-- `src/layouts/BaseListing.astro` provides reusable portfolio listing page structure with empty states.
+- `src/layouts/BaseListing.astro` provides reusable portfolio listing page structure and omits placeholder body copy for empty listings.
 - `src/layouts/BaseDetail.astro` provides reusable detail page structure with content header, prose, share controls, and back navigation.
 - `src/layouts/DevToolsLayout.astro` provides noindex development-preview pages for theme, palette, and responsive screen checks.
 - `src/pages/index.astro` owns the default About page and shows confirmed About prose plus education data.
 - `src/pages/about.astro` renders the confirmed About MDX entry and education data as a retained noindex legacy route.
-- `src/pages/projects/index.astro`, `src/pages/writing/index.astro`, `src/pages/publications/index.astro`, `src/pages/talks/index.astro`, `src/pages/teaching/index.astro`, and `src/pages/cv/index.astro` provide upstream-style section pages that render approved non-draft entries or neutral empty states.
+- `src/pages/projects/index.astro`, `src/pages/writing/index.astro`, `src/pages/publications/index.astro`, `src/pages/talks/index.astro`, `src/pages/teaching/index.astro`, and `src/pages/cv/index.astro` provide upstream-style section pages that render approved non-draft entries and avoid placeholder body copy when empty.
 - The active primary navigation includes About, Publications, Code, and Writing.
 - Talks, Teaching, Tags, and CV remain retained static routes, but are not shown in primary navigation.
 - Dynamic detail routes under portfolio sections render only approved non-draft content entries.
 - `src/pages/tags/index.astro` and `src/pages/tags/[tag].astro` derive tag pages from approved non-draft content.
 - `src/pages/dev-tools/` provides noindex development-preview pages for template-alignment checks.
 - `src/pages/404.astro` provides a static not-found page.
-- `src/styles/global.css` owns Tailwind CSS import, upstream-blue CSS variables, responsive layout, focus styles, prose, cards, tags, social links, share buttons, dev-tools surfaces, empty states, and reduced-motion safeguards.
+- `src/styles/global.css` owns Tailwind CSS import, upstream-blue CSS variables, responsive layout, focus styles, prose, cards, tags, social links, share buttons, dev-tools surfaces, and reduced-motion safeguards.
 - `public/` holds static public assets.
 - `docs/specs/requirements.md` holds stable project requirements.
 - `docs/specs/designs/site-infrastructure.md` holds implementation-facing infrastructure and portfolio baseline design.
@@ -72,7 +72,7 @@ The integration preserves layout, section structure, avatar/social/icon conventi
 - `pages` is used for confirmed static prose such as About.
 - `projects`, `writing`, `publications`, `talks`, `teaching`, and `cv` are public section collections with metadata, tags, draft control, and external-link fields.
 - Draft entries are available as non-public control. Current collections may be empty.
-- Empty public section pages render a neutral empty state, carry `noindex`, and are excluded from sitemap output.
+- Empty public section pages carry `noindex`, avoid placeholder body copy, and are excluded from sitemap output.
 - Tags are derived only from approved non-draft collection entries.
 - Research versus software project modeling is intentionally deferred until the next content decision.
 

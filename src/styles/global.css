@@ -584,24 +584,6 @@ button {
   text-decoration-color: var(--color-accent);
 }
 
-.empty-state {
-  border: 1px dashed var(--color-border);
-  border-radius: 0.5rem;
-  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
-  padding: 1.25rem;
-}
-
-.empty-state h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.1rem;
-}
-
-.empty-state p {
-  margin: 0;
-  color: var(--color-muted);
-  line-height: 1.6;
-}
-
 .detail-toolbar {
   display: flex;
   max-width: 760px;
